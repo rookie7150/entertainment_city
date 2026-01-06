@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Test</title>
+</head>
+<body>
+
+<button type="button" onclick="login()">Login</button>
+<div id="result"></div>
+
+<script>
+function login() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://erp.vhost.com/api/login', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('result').innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send(JSON.stringify({ "username": "test", "password": "test" }));
+}
+</script>
+
+</body>
+</html>
